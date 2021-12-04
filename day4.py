@@ -4,21 +4,8 @@ import adventutils
 def part1(file):
     print("Part 1")
     game = adventutils.file_contents(file)
-    calls = game[0].removesuffix("\n").split(",")
-    boards = list()
-    current_board = list()
-    for index in range(2, len(game)):
-        if game[index] == "\n":
-            boards.append(current_board)
-            current_board = list()
-            continue
-        nums = game[index].removesuffix("\n").split(" ")
-        current_row = list()
-        for num in nums:
-            if num != "":
-                current_row.append(num)
-        current_board.append(current_row)
-    boards.append(current_board)
+    calls = game[0].split(",")
+    boards = getboards(game)
     for num in calls:
         call(boards, num)
         board, row, column = validate(boards)
@@ -30,21 +17,8 @@ def part1(file):
 def part2(file):
     print("Part 2")
     game = adventutils.file_contents(file)
-    calls = game[0].removesuffix("\n").split(",")
-    boards = list()
-    current_board = list()
-    for index in range(2, len(game)):
-        if game[index] == "\n":
-            boards.append(current_board)
-            current_board = list()
-            continue
-        nums = game[index].removesuffix("\n").split(" ")
-        current_row = list()
-        for num in nums:
-            if num != "":
-                current_row.append(num)
-        current_board.append(current_row)
-    boards.append(current_board)
+    calls = game[0].split(",")
+    boards = getboards(game)
     for num in calls:
         call(boards, num)
         board, row, column = validate(boards)
@@ -55,6 +29,19 @@ def part2(file):
             elif board is not None and len(boards) == 1:
                 print(score_unmarked(board, num))
                 return
+
+
+def getboards(game):
+    boards = list()
+    current_board = list()
+    for index in range(2, len(game)):
+        if game[index] == "":
+            boards.append(current_board)
+            current_board = list()
+            continue
+        nums = game[index].split(" ")
+        current_board.append([num for num in nums if num != ""])
+    return boards
 
 
 def remove_all(collection, val):
