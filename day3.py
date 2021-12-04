@@ -5,12 +5,11 @@ def part1(file):
     print("Part 1")
     readings = adventutils.file_contents(file)
     counts = list()
-    for index in range(0, len(readings[0]) - 1):
+    for index in range(0, len(readings[0])):
         counts.append(0)
     for reading in readings:
         for index in range(0, len(reading)):
-            if reading[index] != "\n":
-                counts[index] += int(reading[index])
+            counts[index] += int(reading[index])
     gamma = ""
     epsilon = ""
     for count in counts:
@@ -30,13 +29,13 @@ def part2(file):
     readings = adventutils.file_contents(file)
     # oxygen
     oxygenreadings = readings
-    for pos in range(0, len(readings) - 1):
+    for pos in range(0, len(readings)):
         bit = most_common_bit(oxygenreadings, pos)
         oxygenreadings = filter_bit(oxygenreadings, pos, bit)
         if len(oxygenreadings) == 1:
             break
     co2readings = readings
-    for pos in range(0, len(readings) - 1):
+    for pos in range(0, len(readings)):
         bit = least_common_bit(co2readings, pos)
         co2readings = filter_bit(co2readings, pos, bit)
         if len(co2readings) == 1:

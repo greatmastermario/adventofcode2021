@@ -44,11 +44,6 @@ def getboards(game):
     return boards
 
 
-def remove_all(collection, val):
-    for index in range(len(collection)):
-        collection[index] = collection[index].removeprefix(val)
-
-
 def call(boards, num):
     for board in boards:
         for row in range(len(board)):
@@ -84,17 +79,6 @@ def validate_column(board, column):
                 return False
         return True
     return False
-
-
-def score(board, row, column):
-    total = 0
-    if row is not None:
-        for column in range(len(board[row])):
-            total += int(board[row][column].removesuffix("x"))
-    elif column is not None:
-        for row in range(len(board)):
-            total += int(board[row][column].removesuffix("x"))
-    return total
 
 
 def score_unmarked(board, last_called):
