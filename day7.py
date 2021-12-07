@@ -1,4 +1,5 @@
 import math
+import statistics
 
 import adventutils
 
@@ -9,15 +10,8 @@ def part1(file):
     print("Part 1")
     crabposlist = adventutils.file_contents(file)
     crabs = [int(crab) for crab in crabposlist[0].split(",")]
-    total = 0
-    for crab in crabs:
-        total += crab
     crabs.sort()
-    median = 0
-    if len(crabs) % 2 == 1:
-        median = crabs[math.floor(len(crabs)/2)]
-    else:
-        median = (crabs[int(len(crabs) / 2)] + crabs[int(len(crabs) / 2 - 1)]) / 2
+    median = int(statistics.median(crabs))
     fueltotal = 0
     for crab in crabs:
         fueltotal += abs(crab - median)
@@ -28,16 +22,12 @@ def part2(file):
     print("Part 2")
     crabposlist = adventutils.file_contents(file)
     crabs = [int(crab) for crab in crabposlist[0].split(",")]
-    total = 0
-    for crab in crabs:
-        total += crab
-    average = math.ceil(total / len(crabs))
-    averagefloor = math.floor(total / len(crabs))
+    average = statistics.mean(crabs)
     fueltotal = 0
     fueltotalfloor = 0
     for crab in crabs:
-        fueltotal += crabfuel(abs(crab - average))
-        fueltotalfloor += crabfuel(abs(crab - averagefloor))
+        fueltotal += crabfuel(abs(crab - math.ceil(average)))
+        fueltotalfloor += crabfuel(abs(crab - math.floor(average)))
     print(min(fueltotal, fueltotalfloor))
 
 
