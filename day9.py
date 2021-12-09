@@ -59,6 +59,5 @@ def getpoints(heightmap, x, y, foundpoints):
 
 
 if __name__ == "__main__":
-    # part1("./data/part9test.txt")
     part1("./data/day9part1.txt")
     part2("./data/day9part1.txt")
