@@ -174,5 +174,4 @@ def sort(numstr):
 
 if __name__ == "__main__":
     part1("./data/day8part1.txt")
-    getmapping(['dgb', 'gb', 'dfaeb', 'beadg', 'cdaeg', 'bgdfae', 'bafg', 'cdgfeb', 'aebfcd', 'gcaebdf'])
     part2("./data/day8part1.txt")
